@@ -15,19 +15,17 @@ type ModelDefault struct {
 
 var DB *gorm.DB
 
-func ConnectDB() error {
-	mysqlConf := "root:@tcp(127.0.0.1:3306)/invite_wedd?charset=utf8mb4&parseTime=True&loc=Local"
+func ConnectDB() {
+	mysqlConf := "root:@tcp(localhost:3306)/invite_wedd?charset=utf8mb4&parseTime=True&loc=Local"
 
 	db, err := gorm.Open(mysql.Open(mysqlConf), &gorm.Config{})
 	if err != nil {
-		return err
+		panic("Error connecting to database")
 	}
 
 	if err := db.AutoMigrate(&User{}); err != nil {
-		return err
+		panic("Error migrating database")
 	}
 
 	DB = db
-
-	return nil
 }
