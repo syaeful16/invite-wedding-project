@@ -17,6 +17,8 @@ func main() {
 
 	r.HandleFunc("/api/register", authcontroller.Register).Methods("POST")
 	r.HandleFunc("/api/login", authcontroller.Login).Methods("POST")
+	r.HandleFunc("/api/forgot-password/send-email", authcontroller.ForgotPasswordEmail).Methods("POST")
+	r.HandleFunc("/api/forgot-password/reset", authcontroller.ForgotPasswordReset).Methods("POST")
 
 	api := r.PathPrefix("/api").Subrouter()
 	api.Use(middlewares.JWTMiddleware)
