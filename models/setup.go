@@ -36,7 +36,7 @@ func ConnectDB() {
 		panic("Error connecting to database")
 	}
 
-	if err := db.AutoMigrate(&User{}, &UserToken{}, &Invitation{}, &Bride{}); err != nil {
+	if err := db.AutoMigrate(&User{}, &UserToken{}, &Invitation{}, &Bride{}, &EventSchedule{}, &GalleryInvitation{}, &MusicInvitation{}); err != nil {
 		panic("Error migrating database")
 	}
 
